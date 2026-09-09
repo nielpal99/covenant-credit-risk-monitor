@@ -23,6 +23,7 @@ from .agreement_map import build_agreement_map
 from .coverage import build_issuer_coverage
 from .run import compare_run_snapshots, create_run_snapshot, verify_run_snapshot
 from .historical import create_historical_amzn_snapshot
+from .issuer_config import build_issuer_config
 
 
 def main() -> None:
@@ -88,6 +89,10 @@ def main() -> None:
     coverage.add_argument("--issuer", required=True)
     coverage.add_argument("--filing-radar", type=Path, required=True)
     coverage.add_argument("--output", type=Path, default=Path("data"))
+    issuer_config = sub.add_parser("issuer-config")
+    issuer_config.add_argument("--issuer", required=True)
+    issuer_config.add_argument("--coverage", type=Path, required=True)
+    issuer_config.add_argument("--output", type=Path, default=Path("data"))
     reducto_parse = sub.add_parser("reducto-parse")
     reducto_parse.add_argument("--issuer", default="AMZN")
     reducto_parse.add_argument("--output", type=Path, default=Path("data"))
@@ -185,6 +190,10 @@ def main() -> None:
         print(build_agreement_map(issuer_dir, issuer_dir / "agreement-map.json"))
     elif args.command == "issuer-coverage":
         print(build_issuer_coverage(args.filing_radar, args.issuer, args.output / args.issuer.upper() / "coverage.json"))
+    elif args.command == "issuer-config":
+        if args.issuer.upper() != json.loads(args.coverage.read_text(encoding="utf-8")).get("issuer", "").upper():
+            raise SystemExit("--issuer must match the source coverage inventory")
+        print(build_issuer_config(args.coverage, args.output / args.issuer.upper() / "config-draft.json"))
     elif args.command == "readiness":
         print(build_readiness(args.output / args.issuer.upper(), args.output / args.issuer.upper() / "readiness.json"))
     elif args.command == "snapshot":

@@ -21,7 +21,7 @@
 - Senior Notes principal is now captured from the latest 10-Q as $132.1 billion, separately from fair value
 - Inline-XBRL corroboration and report-alignment checks passed for six selected June 30, 2026 debt facts; it remains machine-only
 - Report evaluation: 26/26 checks passed
-- Automated test suite: 110 tests passed
+- Automated test suite: 111 tests passed
 - Reducto Parse presence audit: passed, presence only
 - Reducto Parse audit is bound to the manifest hash and explicitly excludes the filing-only 10-K from its eight-document provider scope
 - Evaluation persists a ten-question coverage matrix with statuses, caveats, and stable evidence IDs
@@ -39,7 +39,7 @@
 - Agreement map preserves 10 source-linked agreement review hooks, all explicitly marked `human_review_required`
 - GitHub publication is complete under the MIT License with corpus-independent CI; sanitized fixtures and broader public examples remain optional follow-up work
 - Public prototype repository: https://github.com/nielpal99/covenant-credit-risk-monitor; fresh checkout passes the five-test corpus-independent suite with generated-corpus integration tests correctly skipped
-- Controlled issuer expansion started with AAPL source coverage: 12 genuine SEC documents and multiple reporting dates inventoried; no Apple credit conclusions are emitted yet
+- Controlled issuer expansion started with AAPL source coverage: 12 genuine SEC documents and multiple reporting dates inventoried; a configuration draft now selects the latest and prior 10-Q without enabling Apple credit conclusions
 - Commercialization assessment is now durable in `COMMERCIALIZATION.md`: Amazon now has two genuine periods for repeatability evidence, while full-period parity, human verification, issuer configuration, agreement depth, workflow surface, and measured ROI remain open
 - Immutable run snapshot created at `data/AMZN/runs/run-7571ecacc62fcf80/`; its recorded artifact hashes verify successfully and repeated snapshot creation is idempotent
 - Snapshot-to-snapshot comparison now verifies both immutable inputs and persists corpus, debt-instrument, covenant, and declared-report deltas without mutating either run; current smoke comparison is identical because only one reporting-period snapshot exists

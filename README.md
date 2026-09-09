@@ -80,6 +80,7 @@ Generated SEC documents, provider caches, rendered files, and reports live under
 Detailed provider, Reducto, XBRL, review, and snapshot commands are in [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md).
 
 The `issuer-coverage` command can inventory a second issuer’s genuine SEC source set without pretending that source coverage is a completed credit report.
+The `issuer-config` command can turn that inventory into a reviewable period-selection draft; it does not enable credit conclusions.
 
 ## Project status
 

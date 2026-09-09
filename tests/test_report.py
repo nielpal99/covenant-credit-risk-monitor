@@ -247,7 +247,7 @@ def test_product_status_is_durable_and_matches_current_boundary():
     assert "June 30, 2026 versus March 31, 2026" in text
     assert "not calculable" in text
     assert "26/26 checks passed" in text
-    assert "110 tests passed" in text
+    assert "111 tests passed" in text
     assert "Active blockers" in text
     assert "Additional Reducto usage requires explicit cost authorization" in text
 

@@ -147,6 +147,7 @@ Produce one trustworthy, human-reviewable, evidence-linked answer to: “What de
 135. **Controlled second-issuer scoping:** inventory genuine AAPL SEC sources and reporting dates without promoting source coverage into an unverified credit report.
 136. **Commercialization evidence:** document the initial buyer, product wedge, critical gaps, pilot acceptance criteria, and trust boundaries in a durable commercialization artifact.
 137. **Historical period snapshot:** add a bounded, source-linked historical AMZN snapshot and verified cross-period comparison without fabricating missing data or treating the snapshot as human-approved.
+138. **Issuer configuration draft:** turn second-issuer source coverage into an explicit, reviewable period-selection configuration while keeping credit reporting disabled until issuer mapping and trust gates are complete.
 
 ## Explicit non-goals
 

@@ -68,6 +68,13 @@ This produces supplemental machine corroboration for selected standard debt fact
 
 ## Controlled issuer scoping
 
+```bash
+ccrm issuer-coverage --issuer AAPL --filing-radar /path/to/filing-radar-export
+ccrm issuer-config --issuer AAPL --coverage data/AAPL/coverage.json
+```
+
+`issuer-config` selects genuine latest/prior 10-Q candidates and the latest 10-K for review. It remains a configuration draft: credit reporting is disabled until issuer-specific instruments, agreements, calculations, and trust gates are configured.
+
 Use source inventory before adding an issuer-specific report:
 
 ```bash

@@ -1,6 +1,7 @@
 from ccrm.compare import classify_amzn_changes, extract_amzn_snapshot
 from ccrm.schema import Covenant
 from ccrm.coverage import build_issuer_coverage
+from ccrm.issuer_config import build_issuer_config
 
 
 def test_public_schema_preserves_safe_not_calculable_boundary():
@@ -38,3 +39,21 @@ def test_public_issuer_coverage_is_source_only(tmp_path):
     assert result["status"] == "source_scoped"
     assert result["customer_ready"] is False
     assert result["report_dates"] == ["2026-06-27"]
+
+
+def test_public_issuer_config_draft_preserves_source_only_boundary(tmp_path):
+    coverage = tmp_path / "coverage.json"
+    coverage.write_text(__import__("json").dumps({
+        "issuer": "AAPL",
+        "status": "source_scoped",
+        "documents": [
+            {"form": "10-Q", "report_date": "2026-03-28", "accession": "prior"},
+            {"form": "10-Q", "report_date": "2026-06-27", "accession": "latest"},
+            {"form": "10-K", "report_date": "2025-09-27", "accession": "annual"},
+        ],
+    }), encoding="utf-8")
+    result = __import__("json").loads(build_issuer_config(coverage, tmp_path / "config.json").read_text())
+    assert result["status"] == "configuration_draft"
+    assert result["credit_report_enabled"] is False
+    assert result["selected_latest_10q"]["accession"] == "latest"
+    assert result["selected_prior_10q"]["accession"] == "prior"
