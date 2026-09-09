@@ -68,6 +68,7 @@ Generated SEC documents, provider caches, rendered files, and reports live under
 - [`ROADMAP.md`](ROADMAP.md) — prioritized product history and remaining work
 - [`SECURITY.md`](SECURITY.md) — credential and publication rules
 - [`PUBLICATION_STATUS.md`](PUBLICATION_STATUS.md) — GitHub release boundary
+- [`COMMERCIALIZATION.md`](COMMERCIALIZATION.md) — customer, gap, pilot, and commercialization strategy
 - [`src/ccrm/report.py`](src/ccrm/report.py) — deterministic report builder
 - [`src/ccrm/evaluate.py`](src/ccrm/evaluate.py) — evidence and calculation gates
 - [`src/ccrm/review.py`](src/ccrm/review.py) — review state and sign-off controls
