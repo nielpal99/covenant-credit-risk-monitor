@@ -1,0 +1,14 @@
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+.DS_Store
+
+# Generated SEC corpus, provider caches, rendered documents, and local outputs.
+# These artifacts are source-bound and can contain large files, local paths, or
+# provider job metadata; regenerate them locally instead of committing them.
+data/
+work/
+outputs/
+*.pdf
