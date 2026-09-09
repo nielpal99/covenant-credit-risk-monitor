@@ -10,11 +10,12 @@ The prototype is published at https://github.com/nielpal99/covenant-credit-risk-
 - Public documentation no longer contains the local Filing Radar path.
 - Credential-handling and issue-reporting rules are documented in `SECURITY.md`.
 - GitHub Actions runs the corpus-independent public test suite on pushes and pull requests.
+- The repository is released under the MIT License.
 
 ## Remaining publication work
 
 1. Add a small sanitized fixture set so a clean checkout can run meaningful tests without the 123 MB local SEC/provider corpus.
 2. Corpus-dependent integration tests are separated from the public package tests; the remaining work is to add a small sanitized fixture set for meaningful clean-checkout coverage.
-3. Choose and add an explicit open-source license and repository CI policy before treating the repository as a finished public project.
+3. Add sanitized issuer fixtures and broader public examples before treating the repository as a finished public project.
 
 The current Amazon report remains a local evidence artifact and is not treated as public repository content.

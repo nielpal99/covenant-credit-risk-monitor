@@ -2,6 +2,8 @@
 
 [GitHub repository](https://github.com/nielpal99/covenant-credit-risk-monitor)
 
+Licensed under the [MIT License](LICENSE).
+
 An SEC-first prototype that turns debt filings and credit agreements into an evidence-linked answer to:
 
 > What obligations govern this issuer, what room remains under them, and what changed since the prior reporting period?
