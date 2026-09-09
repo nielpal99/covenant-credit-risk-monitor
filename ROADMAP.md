@@ -144,6 +144,7 @@ Produce one trustworthy, human-reviewable, evidence-linked answer to: “What de
 132. **Agreement review map:** normalize source-linked covenant, reporting, default, remedy, and amendment hooks while preserving human-review boundaries.
 133. **Period registry:** inventory verified distinct periods and duplicate rebuilds so readiness cannot mistake rebuild noise for historical evidence.
 134. **Public repository boundary:** prepare a safe GitHub publication boundary that excludes generated/provider artifacts, documents credential handling, and identifies sanitized-fixture and licensing gates.
+135. **Controlled second-issuer scoping:** inventory genuine AAPL SEC sources and reporting dates without promoting source coverage into an unverified credit report.
 
 ## Explicit non-goals
 

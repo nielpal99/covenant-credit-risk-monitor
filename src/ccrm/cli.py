@@ -20,6 +20,7 @@ from .approval import build_approval_packet
 from .metrics import build_workflow_metrics
 from .periods import build_period_registry
 from .agreement_map import build_agreement_map
+from .coverage import build_issuer_coverage
 from .run import compare_run_snapshots, create_run_snapshot, verify_run_snapshot
 
 
@@ -82,6 +83,10 @@ def main() -> None:
     agreement_map = sub.add_parser("agreement-map")
     agreement_map.add_argument("--issuer", default="AMZN")
     agreement_map.add_argument("--output", type=Path, default=Path("data"))
+    coverage = sub.add_parser("issuer-coverage")
+    coverage.add_argument("--issuer", required=True)
+    coverage.add_argument("--filing-radar", type=Path, required=True)
+    coverage.add_argument("--output", type=Path, default=Path("data"))
     reducto_parse = sub.add_parser("reducto-parse")
     reducto_parse.add_argument("--issuer", default="AMZN")
     reducto_parse.add_argument("--output", type=Path, default=Path("data"))
@@ -174,6 +179,8 @@ def main() -> None:
     elif args.command == "agreement-map":
         issuer_dir = args.output / args.issuer.upper()
         print(build_agreement_map(issuer_dir, issuer_dir / "agreement-map.json"))
+    elif args.command == "issuer-coverage":
+        print(build_issuer_coverage(args.filing_radar, args.issuer, args.output / args.issuer.upper() / "coverage.json"))
     elif args.command == "readiness":
         print(build_readiness(args.output / args.issuer.upper(), args.output / args.issuer.upper() / "readiness.json"))
     elif args.command == "snapshot":

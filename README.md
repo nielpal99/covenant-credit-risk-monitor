@@ -75,6 +75,8 @@ Generated SEC documents, provider caches, rendered files, and reports live under
 
 Detailed provider, Reducto, XBRL, review, and snapshot commands are in [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md).
 
+The `issuer-coverage` command can inventory a second issuer’s genuine SEC source set without pretending that source coverage is a completed credit report.
+
 ## Project status
 
 This is a focused prototype, not a production credit system. Expansion to other issuers is intentionally gated until the Amazon workflow has two distinct real reporting periods and its trust gates are proven.

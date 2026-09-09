@@ -64,6 +64,19 @@ ccrm xbrl-corroborate --issuer AMZN
 
 This produces supplemental machine corroboration for selected standard debt facts. It does not establish covenant definitions, headroom, remedies, or human verification.
 
+## Controlled issuer scoping
+
+Use source inventory before adding an issuer-specific report:
+
+```bash
+ccrm issuer-coverage \
+  --issuer AAPL \
+  --filing-radar /path/to/filing-radar-export \
+  --output data
+```
+
+This records genuine forms, reporting dates, SEC URLs, source availability, and source hashes. It does not infer debt, covenant, headroom, or customer readiness.
+
 ## Evaluation boundaries
 
 The evaluation checks:
