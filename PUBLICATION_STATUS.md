@@ -9,6 +9,7 @@ The prototype is published at https://github.com/nielpal99/covenant-credit-risk-
 - Generated corpus, provider caches, rendered PDFs, local work files, and outputs are ignored.
 - Public documentation no longer contains the local Filing Radar path.
 - Credential-handling and issue-reporting rules are documented in `SECURITY.md`.
+- GitHub Actions runs the corpus-independent public test suite on pushes and pull requests.
 
 ## Remaining publication work
 
