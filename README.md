@@ -24,7 +24,7 @@ The first issuer is Amazon.com, Inc. (AMZN), comparing June 30, 2026 with March 
 
 The prototype identifies a $17.5B delayed-draw term loan facility, confirms it was undrawn at quarter-end, tracks revolving and commercial-paper capacity, captures the $173M increase in other short-term borrowings, and maps agreement sections for covenants, defaults, remedies, reporting, and amendments.
 
-The report deliberately does not invent covenant headroom. The current release remains `internal_review`, not customer-ready, because human approval and a second genuine reporting period are still required.
+The report deliberately does not invent covenant headroom. The current release remains `internal_review`, not customer-ready, because human approval is still required; a bounded historical March 31, 2026 snapshot now provides the second genuine period for repeatability testing.
 
 ## Trust boundary
 
@@ -57,6 +57,9 @@ ccrm agent-review --issuer AMZN
 ccrm decision-brief --issuer AMZN
 ccrm approval-packet --issuer AMZN
 ccrm readiness --issuer AMZN
+ccrm historical-snapshot --issuer AMZN
+ccrm period-registry --issuer AMZN
+ccrm compare-runs --prior-run data/AMZN/runs/run-historical-20260331/run-manifest.json --current-run data/AMZN/runs/RUN_ID/run-manifest.json --output data/AMZN/q1-to-q2-comparison.json
 ```
 
 Generated SEC documents, provider caches, rendered files, and reports live under `data/` and are ignored by Git.
@@ -80,4 +83,4 @@ The `issuer-coverage` command can inventory a second issuer’s genuine SEC sour
 
 ## Project status
 
-This is a focused prototype, not a production credit system. Expansion to other issuers is intentionally gated until the Amazon workflow has two distinct real reporting periods and its trust gates are proven.
+This is a focused prototype, not a production credit system. Amazon now has two distinct real periods, but expansion to other issuers remains gated until its human approval and broader trust gates are proven.

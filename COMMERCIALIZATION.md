@@ -41,7 +41,7 @@ That is enough for a paid design-partner pilot, but not yet enough for a broad p
 
 ### 1. Recurring-period proof
 
-Only one distinct Amazon reporting period is currently represented in immutable runs. Commercial proof requires at least two genuine refreshes with meaningful deltas and no duplicate-run confusion.
+Amazon now has two genuine periods in immutable artifacts, including a March 31, 2026 historical snapshot and the June 30, 2026 full workflow run. The cross-period comparison surfaces meaningful changes, but the older snapshot is intentionally bounded and does not yet have full report parity or a completed human release review.
 
 ### 2. General issuer configuration
 
@@ -85,7 +85,7 @@ Start with a paid, narrow pilot priced around the number of issuers and reportin
 
 A design-partner pilot should not be declared successful until it demonstrates:
 
-- two genuine reporting periods for Amazon;
+- two genuine reporting periods for Amazon, with comparable full-period coverage and human review;
 - one second issuer with a materially different debt or covenant structure;
 - all populated material facts linked to usable SEC or agreement evidence;
 - no unsupported headroom calculations;

@@ -146,6 +146,7 @@ Produce one trustworthy, human-reviewable, evidence-linked answer to: “What de
 134. **Public repository boundary:** prepare a safe GitHub publication boundary that excludes generated/provider artifacts, documents credential handling, and identifies sanitized-fixture and licensing gates.
 135. **Controlled second-issuer scoping:** inventory genuine AAPL SEC sources and reporting dates without promoting source coverage into an unverified credit report.
 136. **Commercialization evidence:** document the initial buyer, product wedge, critical gaps, pilot acceptance criteria, and trust boundaries in a durable commercialization artifact.
+137. **Historical period snapshot:** add a bounded, source-linked historical AMZN snapshot and verified cross-period comparison without fabricating missing data or treating the snapshot as human-approved.
 
 ## Explicit non-goals
 

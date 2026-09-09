@@ -26,6 +26,8 @@ The review state is hash-bound to the report, checklist, provider comparison, Pa
 ```bash
 ccrm snapshot --issuer AMZN
 ccrm verify-snapshot --run-manifest data/AMZN/runs/RUN_ID/run-manifest.json
+ccrm historical-snapshot --issuer AMZN
+ccrm compare-runs --prior-run data/AMZN/runs/run-historical-20260331/run-manifest.json --current-run data/AMZN/runs/RUN_ID/run-manifest.json --output data/AMZN/q1-to-q2-comparison.json
 ccrm compare-runs \
   --prior-run data/AMZN/runs/PRIOR/run-manifest.json \
   --current-run data/AMZN/runs/CURRENT/run-manifest.json \

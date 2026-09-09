@@ -21,25 +21,26 @@
 - Senior Notes principal is now captured from the latest 10-Q as $132.1 billion, separately from fair value
 - Inline-XBRL corroboration and report-alignment checks passed for six selected June 30, 2026 debt facts; it remains machine-only
 - Report evaluation: 26/26 checks passed
-- Automated test suite: 109 tests passed
+- Automated test suite: 110 tests passed
 - Reducto Parse presence audit: passed, presence only
 - Reducto Parse audit is bound to the manifest hash and explicitly excludes the filing-only 10-K from its eight-document provider scope
 - Evaluation persists a ten-question coverage matrix with statuses, caveats, and stable evidence IDs
 - Review summary surfaces the verified Reducto Parse scope and the intentional annual-context exclusion
 - Clean rebuild from the available Filing Radar/SEC inputs reproduces the eleven-document corpus, report, passing evaluation, and integrity checks
 - Release readiness artifact reports `internal_review`; automated quality passes, human review is the blocking gate, and provider comparison gaps are explicitly optional/documented
-- Expansion gate reports `expansion_ready: false`; expansion should wait for AMZN human verification and a second real immutable reporting-period run
+- Expansion gate reports `expansion_ready: false`; the second real Amazon period is now present, but expansion still waits for AMZN human verification
 - Agent review now checks source binding, evidence completeness, corpus availability, key DDTL facts, change provenance, and calculation safety; its hash is bound into `review-state.json` and it produces a focused exception list while preserving human approval as the release gate
 - Customer decision brief now translates the evidence bundle into a source-linked liquidity conclusion, decision-relevant changes, uncertainty boundaries, and four prioritized approval exceptions
 - Human approval packet now turns those four exceptions into proposed dispositions and explicit confirmation steps without weakening the customer-ready gate
 - Duplicate same-period rebuilds are now recognized as identical by period, verified corpus content, and report content; they cannot falsely count as historical change or unlock issuer expansion
 - Workflow metrics record 24 evidence items narrowed to 4 explicit agent exceptions; analyst time savings remain deliberately unmeasured
-- Period registry confirms four duplicate builds of one reporting period and no genuine second period
+- Period registry confirms five duplicate builds of the June 30, 2026 period plus one verified March 31, 2026 historical snapshot; genuine period count is now two
+- Q1-to-Q2 comparison now verifies the real March 31, 2026 SEC 10-Q snapshot against the June 30, 2026 run and surfaces the DDTL addition and $173 million short-term-facility increase; the Q1 snapshot remains bounded and machine-assembled
 - Agreement map preserves 10 source-linked agreement review hooks, all explicitly marked `human_review_required`
 - GitHub publication is complete under the MIT License with corpus-independent CI; sanitized fixtures and broader public examples remain optional follow-up work
 - Public prototype repository: https://github.com/nielpal99/covenant-credit-risk-monitor; fresh checkout passes the five-test corpus-independent suite with generated-corpus integration tests correctly skipped
 - Controlled issuer expansion started with AAPL source coverage: 12 genuine SEC documents and multiple reporting dates inventoried; no Apple credit conclusions are emitted yet
-- Commercialization assessment is now durable in `COMMERCIALIZATION.md`: current proof supports a narrow design-partner pilot, while recurring-period proof, issuer configuration, agreement depth, workflow surface, and measured ROI remain open
+- Commercialization assessment is now durable in `COMMERCIALIZATION.md`: Amazon now has two genuine periods for repeatability evidence, while full-period parity, human verification, issuer configuration, agreement depth, workflow surface, and measured ROI remain open
 - Immutable run snapshot created at `data/AMZN/runs/run-7571ecacc62fcf80/`; its recorded artifact hashes verify successfully and repeated snapshot creation is idempotent
 - Snapshot-to-snapshot comparison now verifies both immutable inputs and persists corpus, debt-instrument, covenant, and declared-report deltas without mutating either run; current smoke comparison is identical because only one reporting-period snapshot exists
 
@@ -69,3 +70,5 @@ Complete human review of the DDTL agreement sections, debt facts, calculation sa
 - `data/AMZN/xbrl-corroboration.json` — bounded SEC inline-XBRL corroboration
 - `data/AMZN/readiness.json` — persisted release/readiness gate
 - `data/AMZN/runs/` — immutable reporting-period snapshots and run manifests
+- `data/AMZN/runs/run-historical-20260331/` — bounded real Q1 historical snapshot
+- `data/AMZN/q1-to-q2-comparison.json` — verified cross-period comparison

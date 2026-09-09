@@ -22,6 +22,7 @@ from .periods import build_period_registry
 from .agreement_map import build_agreement_map
 from .coverage import build_issuer_coverage
 from .run import compare_run_snapshots, create_run_snapshot, verify_run_snapshot
+from .historical import create_historical_amzn_snapshot
 
 
 def main() -> None:
@@ -104,6 +105,9 @@ def main() -> None:
     snapshot = sub.add_parser("snapshot")
     snapshot.add_argument("--issuer", default="AMZN")
     snapshot.add_argument("--output", type=Path, default=Path("data"))
+    historical_snapshot = sub.add_parser("historical-snapshot")
+    historical_snapshot.add_argument("--issuer", default="AMZN")
+    historical_snapshot.add_argument("--output", type=Path, default=Path("data"))
     verify_snapshot = sub.add_parser("verify-snapshot")
     verify_snapshot.add_argument("--run-manifest", type=Path, required=True)
     compare_runs = sub.add_parser("compare-runs")
@@ -114,7 +118,7 @@ def main() -> None:
     xbrl.add_argument("--issuer", default="AMZN")
     xbrl.add_argument("--output", type=Path, default=Path("data"))
     args = parser.parse_args()
-    issuer_commands = {"report", "parse", "extract", "evaluate", "llama-plan", "compare-cloud", "review-checklist", "review-state", "review-summary", "agent-review", "decision-brief", "approval-packet", "workflow-metrics", "period-registry", "agreement-map", "reducto-parse", "reducto-extract", "reducto-audit", "readiness", "snapshot", "xbrl-corroborate"}
+    issuer_commands = {"report", "parse", "extract", "evaluate", "llama-plan", "compare-cloud", "review-checklist", "review-state", "review-summary", "agent-review", "decision-brief", "approval-packet", "workflow-metrics", "period-registry", "agreement-map", "reducto-parse", "reducto-extract", "reducto-audit", "readiness", "snapshot", "historical-snapshot", "xbrl-corroborate"}
     if args.command in issuer_commands and args.issuer.upper() != "AMZN":
         raise SystemExit("Prototype currently supports AMZN only")
     if args.command == "ingest-amzn":
@@ -185,6 +189,10 @@ def main() -> None:
         print(build_readiness(args.output / args.issuer.upper(), args.output / args.issuer.upper() / "readiness.json"))
     elif args.command == "snapshot":
         print(create_run_snapshot(args.output / args.issuer.upper()))
+    elif args.command == "historical-snapshot":
+        if args.issuer.upper() != "AMZN":
+            raise SystemExit("Historical snapshot currently supports AMZN only")
+        print(create_historical_amzn_snapshot(args.output / args.issuer.upper(), (args.output / args.issuer.upper() / "runs")))
     elif args.command == "verify-snapshot":
         result = verify_run_snapshot(args.run_manifest)
         print(json.dumps(result, indent=2))

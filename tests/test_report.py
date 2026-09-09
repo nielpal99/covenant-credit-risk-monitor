@@ -23,6 +23,7 @@ from ccrm.approval import build_approval_packet
 from ccrm.metrics import build_workflow_metrics
 from ccrm.periods import build_period_registry
 from ccrm.agreement_map import build_agreement_map
+from ccrm.historical import build_historical_amzn_report
 
 
 def test_report_captures_zero_ddtl_draw_at_latest_quarter():
@@ -31,6 +32,18 @@ def test_report_captures_zero_ddtl_draw_at_latest_quarter():
     assert instrument["outstanding_amount"] == "$0 as of June 30, 2026"
     assert any("no borrowings outstanding" in e["excerpt"].lower() for e in instrument["evidence"])
     assert "June 8, 2026 DDTL Credit Agreement" in instrument["agreement_version"]
+
+
+def test_historical_amzn_snapshot_uses_real_q1_source_without_fabricating_ddtl(tmp_path: Path):
+    source = Path("data/AMZN/corpus/0001018724-26-000014/0001018724-26-000014-amzn-20260331.htm")
+    output = tmp_path / "report.json"
+    build_historical_amzn_report(source, "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000014/amzn-20260331.htm", output)
+    report = json.loads(output.read_text())
+    assert report["as_of"] == "March 31, 2026"
+    assert report["prior_period"] == "December 31, 2025"
+    assert not any(item["name"] == "DDTL Facility" for item in report["debt_instruments"])
+    assert report["changes_since_prior_period"][0]["calculation"] == "$152 million - $455 million = -$303 million decrease"
+    assert all(e["sec_url"].startswith("https://www.sec.gov/") for item in report["debt_instruments"] for e in item["evidence"])
 
 
 def test_report_does_not_invent_headroom():
@@ -234,7 +247,7 @@ def test_product_status_is_durable_and_matches_current_boundary():
     assert "June 30, 2026 versus March 31, 2026" in text
     assert "not calculable" in text
     assert "26/26 checks passed" in text
-    assert "105 tests passed" in text
+    assert "110 tests passed" in text
     assert "Active blockers" in text
     assert "Additional Reducto usage requires explicit cost authorization" in text
 
@@ -320,7 +333,8 @@ def test_readiness_artifact_keeps_current_report_internal_review(tmp_path: Path)
     assert "provider comparison" in readiness["documented_optional_gaps"]
     assert "agent review" not in readiness["documented_optional_gaps"]
     assert readiness["expansion_ready"] is False
-    assert "fewer than two distinct immutable reporting periods exist" in readiness["expansion_blockers"]
+    assert "fewer than two distinct immutable reporting periods exist" not in readiness["expansion_blockers"]
+    assert "AMZN human review is not complete" in readiness["expansion_blockers"]
 
 
 def test_agent_review_passes_bounded_checks_and_preserves_exceptions(tmp_path: Path):
@@ -378,8 +392,8 @@ def test_workflow_metrics_are_conservative_and_durable(tmp_path: Path):
 def test_period_registry_does_not_count_duplicate_rebuilds_as_history(tmp_path: Path):
     output = build_period_registry(Path("data/AMZN"), tmp_path / "period-registry.json")
     registry = json.loads(output.read_text())
-    assert registry["distinct_period_count"] == 1
-    assert registry["historical_comparison_ready"] is False
+    assert registry["distinct_period_count"] == 2
+    assert registry["historical_comparison_ready"] is True
     assert registry["duplicate_runs"]
     assert registry["invalid_runs"] == []
 
