@@ -37,6 +37,7 @@
 - Period registry confirms four duplicate builds of one reporting period and no genuine second period
 - Agreement map preserves 10 source-linked agreement review hooks, all explicitly marked `human_review_required`
 - GitHub publication preflight initialized a local repository and confirms generated corpus/provider artifacts are ignored; public release remains blocked on sanitized fixtures, test separation, and license selection
+- Public prototype repository: https://github.com/nielpal99/covenant-credit-risk-monitor; fresh checkout passes the corpus-independent suite with generated-corpus integration tests correctly skipped
 - Immutable run snapshot created at `data/AMZN/runs/run-7571ecacc62fcf80/`; its recorded artifact hashes verify successfully and repeated snapshot creation is idempotent
 - Snapshot-to-snapshot comparison now verifies both immutable inputs and persists corpus, debt-instrument, covenant, and declared-report deltas without mutating either run; current smoke comparison is identical because only one reporting-period snapshot exists
 

@@ -1,5 +1,7 @@
 # Covenant & Credit Risk Monitor
 
+Public repository: https://github.com/nielpal99/covenant-credit-risk-monitor
+
 An SEC-first, evidence-linked prototype for debt and covenant research. This is a separate product from Filing Radar, with a deliberately narrow first milestone: one issuer, one reporting-period comparison, and one debt-instrument family.
 
 ## Prototype decision

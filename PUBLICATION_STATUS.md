@@ -2,7 +2,7 @@
 
 ## Current decision
 
-The project is not ready to push as a public repository yet. No external repository has been created and no code has been pushed.
+The prototype is published at https://github.com/nielpal99/covenant-credit-risk-monitor. The repository contains source, tests, and documentation only; generated Amazon/provider artifacts remain local.
 
 ## Safe boundary prepared
 
@@ -13,8 +13,7 @@ The project is not ready to push as a public repository yet. No external reposit
 ## Remaining publication work
 
 1. Add a small sanitized fixture set so a clean checkout can run meaningful tests without the 123 MB local SEC/provider corpus.
-2. Separate corpus-dependent integration tests from fixture-based package tests and make the public test command deterministic.
-3. Choose and add an explicit open-source license before publication.
-4. Create the external repository and push only after the sanitized test and secret preflight passes.
+2. Corpus-dependent integration tests are separated from the public package tests; the remaining work is to add a small sanitized fixture set for meaningful clean-checkout coverage.
+3. Choose and add an explicit open-source license and repository CI policy before treating the repository as a finished public project.
 
 The current Amazon report remains a local evidence artifact and is not treated as public repository content.
