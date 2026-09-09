@@ -53,6 +53,8 @@ ccrm evaluate --issuer AMZN
 ccrm llama-plan --issuer AMZN
 ```
 
+In a clean public checkout, run `pytest -m "not integration"` for the corpus-independent suite. The full `pytest` suite becomes available after generating the private/local Amazon corpus; corpus-dependent tests are marked `integration`.
+
 If `LLAMA_CLOUD_API_KEY` is available, parsing and schema extraction are opt-in:
 
 ```bash

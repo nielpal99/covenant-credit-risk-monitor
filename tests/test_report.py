@@ -2,6 +2,10 @@ import hashlib
 import json
 from pathlib import Path
 
+import pytest
+
+pytestmark = pytest.mark.integration
+
 from ccrm.evaluate import evaluate_report
 from ccrm.compare import classify_amzn_changes, extract_amzn_snapshot
 from ccrm.llama_plan import bounded_agreement_parsed_documents, bounded_source_documents, build_llama_plan, validate_llama_plan
