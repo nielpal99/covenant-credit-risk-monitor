@@ -15,6 +15,7 @@ ccrm decision-brief --issuer AMZN
 ccrm approval-packet --issuer AMZN
 ccrm workflow-metrics --issuer AMZN
 ccrm agreement-map --issuer AMZN
+ccrm review-queue --issuer AMZN
 ccrm period-registry --issuer AMZN
 ccrm readiness --issuer AMZN
 ```

@@ -247,7 +247,7 @@ def test_product_status_is_durable_and_matches_current_boundary():
     assert "June 30, 2026 versus March 31, 2026" in text
     assert "not calculable" in text
     assert "26/26 checks passed" in text
-    assert "111 tests passed" in text
+    assert "112 tests passed" in text
     assert "Active blockers" in text
     assert "Additional Reducto usage requires explicit cost authorization" in text
 
@@ -345,6 +345,7 @@ def test_agent_review_passes_bounded_checks_and_preserves_exceptions(tmp_path: P
     assert all(check["passed"] for check in review["checks"])
     assert any(check["name"] == "evidence excerpt anchoring" for check in review["checks"])
     assert {item["topic"] for item in review["exceptions"]} == {"agreement amendments", "covenant capacity", "events of default and remedies", "post-period activity"}
+    assert all(item["evidence_ids"] for item in review["exceptions"])
 
 
 def test_agent_review_is_bound_to_durable_review_state(tmp_path: Path):

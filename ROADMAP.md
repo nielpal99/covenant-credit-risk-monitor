@@ -148,6 +148,7 @@ Produce one trustworthy, human-reviewable, evidence-linked answer to: “What de
 136. **Commercialization evidence:** document the initial buyer, product wedge, critical gaps, pilot acceptance criteria, and trust boundaries in a durable commercialization artifact.
 137. **Historical period snapshot:** add a bounded, source-linked historical AMZN snapshot and verified cross-period comparison without fabricating missing data or treating the snapshot as human-approved.
 138. **Issuer configuration draft:** turn second-issuer source coverage into an explicit, reviewable period-selection configuration while keeping credit reporting disabled until issuer mapping and trust gates are complete.
+139. **Structured review queue:** persist stable exception IDs and evidence links for analyst assignment and disposition without weakening human approval.
 
 ## Explicit non-goals
 

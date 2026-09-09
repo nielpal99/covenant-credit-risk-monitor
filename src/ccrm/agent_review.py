@@ -89,11 +89,18 @@ def build_agent_review(
     unproven_changes = [item.get("change_type", "unknown") for item in report.get("changes_since_prior_period", []) if not item.get("evidence")]
     check("change provenance", not unproven_changes, "Every declared change has supporting evidence." if not unproven_changes else f"Unproven changes: {unproven_changes}")
 
+    def evidence_ids(items: list[dict[str, Any]]) -> list[str]:
+        return sorted({item.get("evidence_id") for record in items for item in record.get("evidence", []) if item.get("evidence_id")})
+
+    amendments = [item for item in report.get("changes_since_prior_period", []) if item.get("change_type") == "amendment"]
+    covenants = report.get("covenants", [])
+    risk_items = [report.get("risk_status", {})]
+    ddtl_items = [item for item in report.get("debt_instruments", []) if item.get("name") == "DDTL Facility"]
     exceptions = [
-        {"severity": "material", "topic": "agreement amendments", "detail": "The two June 8 revolving amendments are identified and source-linked, but their full commercial effect remains for human confirmation."},
-        {"severity": "material", "topic": "covenant capacity", "detail": "Financial covenant, lien, and fundamental-change headroom remains not calculable; the agent confirms that no unsupported headroom was emitted."},
-        {"severity": "review", "topic": "events of default and remedies", "detail": "Sections 8.01 and 8.02 are source-linked, but the provider output is not a substitute for reviewer confirmation of the complete triggers and remedies."},
-        {"severity": "review", "topic": "post-period activity", "detail": "The report cannot determine whether the DDTL was drawn after June 30 and before the September 30 commitment expiry."},
+        {"severity": "material", "topic": "agreement amendments", "detail": "The two June 8 revolving amendments are identified and source-linked, but their full commercial effect remains for human confirmation.", "evidence_ids": evidence_ids(amendments)},
+        {"severity": "material", "topic": "covenant capacity", "detail": "Financial covenant, lien, and fundamental-change headroom remains not calculable; the agent confirms that no unsupported headroom was emitted.", "evidence_ids": evidence_ids(covenants)},
+        {"severity": "review", "topic": "events of default and remedies", "detail": "Sections 8.01 and 8.02 are source-linked, but the provider output is not a substitute for reviewer confirmation of the complete triggers and remedies.", "evidence_ids": evidence_ids(risk_items)},
+        {"severity": "review", "topic": "post-period activity", "detail": "The report cannot determine whether the DDTL was drawn after June 30 and before the September 30 commitment expiry.", "evidence_ids": evidence_ids(ddtl_items)},
     ]
     passed = all(item["passed"] for item in checks)
     result = {

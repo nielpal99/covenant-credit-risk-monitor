@@ -2,6 +2,7 @@ from ccrm.compare import classify_amzn_changes, extract_amzn_snapshot
 from ccrm.schema import Covenant
 from ccrm.coverage import build_issuer_coverage
 from ccrm.issuer_config import build_issuer_config
+from ccrm.review_queue import build_review_queue
 
 
 def test_public_schema_preserves_safe_not_calculable_boundary():
@@ -57,3 +58,18 @@ def test_public_issuer_config_draft_preserves_source_only_boundary(tmp_path):
     assert result["credit_report_enabled"] is False
     assert result["selected_latest_10q"]["accession"] == "latest"
     assert result["selected_prior_10q"]["accession"] == "prior"
+
+
+def test_public_review_queue_keeps_human_approval_as_release_gate(tmp_path):
+    issuer_dir = tmp_path / "AMZN"
+    issuer_dir.mkdir()
+    (issuer_dir / "agent-review.json").write_text(__import__("json").dumps({
+        "status": "agent_reviewed",
+        "exceptions": [{"topic": "covenant capacity", "severity": "material", "detail": "Headroom is not calculable.", "evidence_ids": ["E-1"]}],
+    }), encoding="utf-8")
+    (issuer_dir / "report.json").write_text(__import__("json").dumps({"as_of": "June 30, 2026"}), encoding="utf-8")
+    (issuer_dir / "review-state.json").write_text(__import__("json").dumps({"status": "agent_reviewed"}), encoding="utf-8")
+    result = __import__("json").loads(build_review_queue(issuer_dir, issuer_dir / "review-queue.json").read_text())
+    assert result["human_approval_required"] is True
+    assert result["items"][0]["status"] == "open"
+    assert result["items"][0]["owner"] is None

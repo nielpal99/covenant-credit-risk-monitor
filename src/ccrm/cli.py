@@ -24,6 +24,7 @@ from .coverage import build_issuer_coverage
 from .run import compare_run_snapshots, create_run_snapshot, verify_run_snapshot
 from .historical import create_historical_amzn_snapshot
 from .issuer_config import build_issuer_config
+from .review_queue import build_review_queue
 
 
 def main() -> None:
@@ -93,6 +94,9 @@ def main() -> None:
     issuer_config.add_argument("--issuer", required=True)
     issuer_config.add_argument("--coverage", type=Path, required=True)
     issuer_config.add_argument("--output", type=Path, default=Path("data"))
+    review_queue = sub.add_parser("review-queue")
+    review_queue.add_argument("--issuer", default="AMZN")
+    review_queue.add_argument("--output", type=Path, default=Path("data"))
     reducto_parse = sub.add_parser("reducto-parse")
     reducto_parse.add_argument("--issuer", default="AMZN")
     reducto_parse.add_argument("--output", type=Path, default=Path("data"))
@@ -123,7 +127,7 @@ def main() -> None:
     xbrl.add_argument("--issuer", default="AMZN")
     xbrl.add_argument("--output", type=Path, default=Path("data"))
     args = parser.parse_args()
-    issuer_commands = {"report", "parse", "extract", "evaluate", "llama-plan", "compare-cloud", "review-checklist", "review-state", "review-summary", "agent-review", "decision-brief", "approval-packet", "workflow-metrics", "period-registry", "agreement-map", "reducto-parse", "reducto-extract", "reducto-audit", "readiness", "snapshot", "historical-snapshot", "xbrl-corroborate"}
+    issuer_commands = {"report", "parse", "extract", "evaluate", "llama-plan", "compare-cloud", "review-checklist", "review-state", "review-summary", "agent-review", "decision-brief", "approval-packet", "review-queue", "workflow-metrics", "period-registry", "agreement-map", "reducto-parse", "reducto-extract", "reducto-audit", "readiness", "snapshot", "historical-snapshot", "xbrl-corroborate"}
     if args.command in issuer_commands and args.issuer.upper() != "AMZN":
         raise SystemExit("Prototype currently supports AMZN only")
     if args.command == "ingest-amzn":
@@ -194,6 +198,8 @@ def main() -> None:
         if args.issuer.upper() != json.loads(args.coverage.read_text(encoding="utf-8")).get("issuer", "").upper():
             raise SystemExit("--issuer must match the source coverage inventory")
         print(build_issuer_config(args.coverage, args.output / args.issuer.upper() / "config-draft.json"))
+    elif args.command == "review-queue":
+        print(build_review_queue(args.output / args.issuer.upper(), args.output / args.issuer.upper() / "review-queue.json"))
     elif args.command == "readiness":
         print(build_readiness(args.output / args.issuer.upper(), args.output / args.issuer.upper() / "readiness.json"))
     elif args.command == "snapshot":

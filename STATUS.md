@@ -21,7 +21,7 @@
 - Senior Notes principal is now captured from the latest 10-Q as $132.1 billion, separately from fair value
 - Inline-XBRL corroboration and report-alignment checks passed for six selected June 30, 2026 debt facts; it remains machine-only
 - Report evaluation: 26/26 checks passed
-- Automated test suite: 111 tests passed
+- Automated test suite: 112 tests passed
 - Reducto Parse presence audit: passed, presence only
 - Reducto Parse audit is bound to the manifest hash and explicitly excludes the filing-only 10-K from its eight-document provider scope
 - Evaluation persists a ten-question coverage matrix with statuses, caveats, and stable evidence IDs
@@ -32,6 +32,7 @@
 - Agent review now checks source binding, evidence completeness, corpus availability, key DDTL facts, change provenance, and calculation safety; its hash is bound into `review-state.json` and it produces a focused exception list while preserving human approval as the release gate
 - Customer decision brief now translates the evidence bundle into a source-linked liquidity conclusion, decision-relevant changes, uncertainty boundaries, and four prioritized approval exceptions
 - Human approval packet now turns those four exceptions into proposed dispositions and explicit confirmation steps without weakening the customer-ready gate
+- Structured review queue now assigns stable exception IDs and source evidence IDs while leaving ownership, disposition, and approval blank for a human reviewer
 - Duplicate same-period rebuilds are now recognized as identical by period, verified corpus content, and report content; they cannot falsely count as historical change or unlock issuer expansion
 - Workflow metrics record 24 evidence items narrowed to 4 explicit agent exceptions; analyst time savings remain deliberately unmeasured
 - Period registry confirms five duplicate builds of the June 30, 2026 period plus one verified March 31, 2026 historical snapshot; genuine period count is now two

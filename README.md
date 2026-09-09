@@ -59,6 +59,7 @@ ccrm approval-packet --issuer AMZN
 ccrm readiness --issuer AMZN
 ccrm historical-snapshot --issuer AMZN
 ccrm period-registry --issuer AMZN
+ccrm review-queue --issuer AMZN
 ccrm compare-runs --prior-run data/AMZN/runs/run-historical-20260331/run-manifest.json --current-run data/AMZN/runs/RUN_ID/run-manifest.json --output data/AMZN/q1-to-q2-comparison.json
 ```
 
@@ -76,6 +77,7 @@ Generated SEC documents, provider caches, rendered files, and reports live under
 - [`src/ccrm/evaluate.py`](src/ccrm/evaluate.py) — evidence and calculation gates
 - [`src/ccrm/review.py`](src/ccrm/review.py) — review state and sign-off controls
 - [`src/ccrm/run.py`](src/ccrm/run.py) — immutable snapshots and comparisons
+- [`src/ccrm/review_queue.py`](src/ccrm/review_queue.py) — structured analyst exception queue
 
 Detailed provider, Reducto, XBRL, review, and snapshot commands are in [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md).
 
